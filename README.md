@@ -1,3 +1,2 @@
 # PalindroneCheckerApp
-//this is a trial
-//idk what am i entering
+//Added a Hardcoded logic to check Madam Palindrome.
