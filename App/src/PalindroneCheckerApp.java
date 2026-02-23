@@ -1,24 +1,20 @@
 public class PalindroneCheckerApp {
     public static void main(String[] args){
         System.out.println("Welcome to Palindrome Checker App Management System");
-        String input = "madam";
 
-        boolean isPalindrome = true;
+        String input = "madam";   // You can change this value
+        String reversed = "";
 
-        for (int i = 0; i < input.length() / 2; i++) {
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
-            }
+        // Iterate from the last character to the first.
+        for (int i = input.length() - 1; i >= 0; i--) {
+            reversed += input.charAt(i);
         }
 
-        //result
-        if (isPalindrome) {
-            System.out.println(input + " is a palindrome.");
+        // Compare original and reversed strings
+        if (input.equals(reversed)) {
+            System.out.println("The string \"" + input + "\" is a palindrome.");
         } else {
-            System.out.println(input + " is not a palindrome.");
+            System.out.println("The string \"" + input + "\" is not a palindrome.");
         }
-        System.out.println("Usecase 2 completed");
-
     }
 }
