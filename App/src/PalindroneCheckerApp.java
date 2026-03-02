@@ -4,45 +4,30 @@ public class PalindroneCheckerApp {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Input : ");
+        System.out.print("Input: ");
         String input = scanner.nextLine();
 
-        // Create service object
-        PalindromeService service = new PalindromeService();
+        // Normalize string
+        // Remove all non-alphanumeric characters and convert to lowercase
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
-        // Call palindrome check method
-        boolean result = service.checkPalindrome(input);
+        boolean isPalindrome = true;
 
-        System.out.println("Is Palindrome? : " + result);
+        // Apply palindrome logic (compare both ends)
+        for (int i = 0; i < normalized.length() / 2; i++) {
 
-        scanner.close();
-    }
-}
+            if (normalized.charAt(i) !=
+                    normalized.charAt(normalized.length() - 1 - i)) {
 
-/**
- * Service class that contains palindrome logic.
- */
-class PalindromeService {
-
-    public boolean checkPalindrome(String input) {
-
-        if (input == null) {
-            return false;
-        }
-
-        // Initialize pointers
-        int start = 0;
-        int end = input.length() - 1;
-
-        // Compare characters moving inward
-        while (start < end) {
-            if (input.charAt(start) != input.charAt(end)) {
-                return false;
+                isPalindrome = false;
+                break;
             }
             start++;
             end--;
         }
 
-        return true;
+        System.out.println("Is Palindrome? : " + isPalindrome);
+
+        scanner.close();
     }
 }
