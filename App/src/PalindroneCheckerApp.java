@@ -2,31 +2,64 @@ import java.util.*;
 
 public class PalindroneCheckerApp {
     public static void main(String[] args){
-        Scanner scanner = new Scanner(System.in);
+        String input = "level";
 
-        System.out.print("Input : ");
-        String input = scanner.nextLine();
+        // Inject strategy dynamically
+        PalindromeStrategy strategy = new StackStrategy();
 
-        boolean result = check(input, 0, input.length() - 1);
+        boolean result = strategy.check(input);
 
+        System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + result);
-
-        scanner.close();
     }
+}
 
-    private static boolean check(String s, int start, int end) {
+interface PalindromeStrategy {
+    boolean check(String input);
+}
 
-        // Base condition: if pointers cross or meet
-        if (start >= end) {
-            return true;
+
+class StackStrategy implements PalindromeStrategy {
+
+    @Override
+    public boolean check(String input) {
+
+        java.util.Stack<Character> stack = new java.util.Stack<>();
+
+        // Pushing all characters onto stack
+        for (char c : input.toCharArray()) {
+            stack.push(c);
         }
 
-        // If characters don't match
-        if (s.charAt(start) != s.charAt(end)) {
-            return false;
+        // Comparing by popping
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
+                return false;
+            }
         }
 
-        // Recursive call moving inward
-        return check(s, start + 1, end - 1);
+        return true;
+    }
+}
+
+
+class DequeStrategy implements PalindromeStrategy {
+
+    @Override
+    public boolean check(String input) {
+
+        java.util.Deque<Character> deque = new java.util.ArrayDeque<>();
+
+        for (char c : input.toCharArray()) {
+            deque.addLast(c);
+        }
+
+        while (deque.size() > 1) {
+            if (!deque.removeFirst().equals(deque.removeLast())) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
