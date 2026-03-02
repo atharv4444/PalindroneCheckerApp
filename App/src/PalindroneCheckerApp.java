@@ -22,6 +22,8 @@ public class PalindroneCheckerApp {
                 isPalindrome = false;
                 break;
             }
+            start++;
+            end--;
         }
 
         System.out.println("Is Palindrome? : " + isPalindrome);
