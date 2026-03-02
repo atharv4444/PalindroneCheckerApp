@@ -2,33 +2,47 @@ import java.util.*;
 
 public class PalindroneCheckerApp {
     public static void main(String[] args){
-        // Define the input string
-        String input = "level";
+        Scanner scanner = new Scanner(System.in);
 
-        // Create a LinkedList to store characters
-        LinkedList<Character> list = new LinkedList<>();
+        System.out.print("Input : ");
+        String input = scanner.nextLine();
 
-        // Add each character to the LinkedList
-        for (char c : input.toCharArray()) {
-            list.add(c);
+        // Create service object
+        PalindromeService service = new PalindromeService();
+
+        // Call palindrome check method
+        boolean result = service.checkPalindrome(input);
+
+        System.out.println("Is Palindrome? : " + result);
+
+        scanner.close();
+    }
+}
+
+/**
+ * Service class that contains palindrome logic.
+ */
+class PalindromeService {
+
+    public boolean checkPalindrome(String input) {
+
+        if (input == null) {
+            return false;
         }
 
-        // Flag to track palindrome state
-        boolean isPalindrome = true;
+        // Initialize pointers
+        int start = 0;
+        int end = input.length() - 1;
 
-        // Compare characters from both ends
-        while (list.size() > 1) {
-            char first = list.removeFirst();
-            char last = list.removeLast();
-
-            if (first != last) {
-                isPalindrome = false;
-                break;
+        // Compare characters moving inward
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) {
+                return false;
             }
+            start++;
+            end--;
         }
 
-        // Output result
-        System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
+        return true;
     }
 }
