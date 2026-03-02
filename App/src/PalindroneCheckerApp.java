@@ -2,33 +2,30 @@ import java.util.*;
 
 public class PalindroneCheckerApp {
     public static void main(String[] args){
-        // Define the input string
-        String input = "level";
+        Scanner scanner = new Scanner(System.in);
 
-        // Create a LinkedList to store characters
-        LinkedList<Character> list = new LinkedList<>();
+        System.out.print("Input: ");
+        String input = scanner.nextLine();
 
-        // Add each character to the LinkedList
-        for (char c : input.toCharArray()) {
-            list.add(c);
-        }
+        // Normalize string
+        // Remove all non-alphanumeric characters and convert to lowercase
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
-        // Flag to track palindrome state
         boolean isPalindrome = true;
 
-        // Compare characters from both ends
-        while (list.size() > 1) {
-            char first = list.removeFirst();
-            char last = list.removeLast();
+        // Apply palindrome logic (compare both ends)
+        for (int i = 0; i < normalized.length() / 2; i++) {
 
-            if (first != last) {
+            if (normalized.charAt(i) !=
+                    normalized.charAt(normalized.length() - 1 - i)) {
+
                 isPalindrome = false;
                 break;
             }
         }
 
-        // Output result
-        System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + isPalindrome);
+
+        scanner.close();
     }
 }

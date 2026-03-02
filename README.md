@@ -1,2 +1,2 @@
 # PalindroneCheckerApp
-//Added a Hardcoded logic to check Madam Palindrome.
+//Atharv Added Usecase10.
