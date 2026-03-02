@@ -2,29 +2,26 @@ import java.util.*;
 
 public class PalindroneCheckerApp {
     public static void main(String[] args){
-        System.out.println("Welcome to Palindrome Checker App Management System");
-
         // Define the input string
-        String input = "refer";
+        String input = "level";
 
-        // Create a Deque to store characters
-        Deque<Character> deque = new ArrayDeque<>();
+        // Create a LinkedList to store characters
+        LinkedList<Character> list = new LinkedList<>();
 
-        // Add each character to the deque
+        // Add each character to the LinkedList
         for (char c : input.toCharArray()) {
-            deque.addLast(c);
+            list.add(c);
         }
 
-        // Flag to track palindrome result
+        // Flag to track palindrome state
         boolean isPalindrome = true;
 
-        // Continue comparison while more than one element exists
-        while (deque.size() > 1) {
+        // Compare characters from both ends
+        while (list.size() > 1) {
+            char first = list.removeFirst();
+            char last = list.removeLast();
 
-            char front = deque.removeFirst();
-            char rear = deque.removeLast();
-
-            if (front != rear) {
+            if (first != last) {
                 isPalindrome = false;
                 break;
             }
